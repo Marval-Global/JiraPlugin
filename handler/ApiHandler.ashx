@@ -233,10 +233,10 @@ public class Form
         {
             case "PreRequisiteCheck":
                 context.Response.Write(this.PreRequisiteCheck());
-                //this.GetJIRAFielInformation();
+       
                 break;
             case "GetJiraIssues":
-                //this.GetJIRAFielInformation();
+               
                 if (this.JIRAFieldType == "number") {
                    httpWebRequest = ApiHandler.BuildRequest(this.ApiBaseUrl + string.Format("search?jql='{0}'={1}", this.CustomFieldName, this.msmRequestNo), null, "GET", this.Proxy);
                 } else {
@@ -255,7 +255,7 @@ public class Form
                 context.Response.Write(this.UpdateJiraIssue(null));
                 break;
             case "CreateJiraIssue":
-                //this.GetJIRAFielInformation();
+               
                 dynamic result = this.CreateJiraIssue();
                 httpWebRequest = ApiHandler.BuildRequest(this.ApiBaseUrl + string.Format("issue/{0}", result.key), null, "GET", this.Proxy);
                 context.Response.Write(ApiHandler.ProcessRequest(httpWebRequest, this.JiraCredentials));
@@ -617,7 +617,7 @@ public class Form
     {
         IDictionary<string, object> body = new Dictionary<string, object>();
         IDictionary<string, object> result = new Dictionary<string, object>();
-        //this.GetJIRAFielInformation();
+       
        
         result.Add(this.CustomFieldId, value);
         body.Add("fields", result);
@@ -798,7 +798,6 @@ public static dynamic GetForm(string formName, dynamic response)
         var json = new StreamReader(httpRequest.InputStream).ReadToEnd();
        
         dynamic data = JObject.Parse(json);
-        //this.GetJIRAFielInformation();
        
         var MarvalRequestNum = data.issue.fields[this.CustomFieldId].Value;
         try {
@@ -826,7 +825,7 @@ public static dynamic GetForm(string formName, dynamic response)
         
         if (requestNumber <= 0 || httpRequest.QueryString["status"] == null) return false;
        
-        //this.GetJIRAFielInformation();
+      
         HttpWebRequest httpWebRequest;
         if (this.JIRAFieldType == "number") {
        
