@@ -17,7 +17,7 @@ Within your JIRA instance follow the steps outlined below:
 1. The WebHooks link can be found under the advanced section in the system administation page.
 2. Create a WebHook button is found in the top right.
 3. The options can be configured to your requirements however the URL needs to be the Plugin endpoint,
-this will be something similar to this. `http://[ServerName]/MSM/RFP/Plugins/marval/marvalsoftware.jira/2.0.0/handler/ApiHandler.ashx`
+this will be something similar to this. `http://[ServerName]/MSM/RFP/Plugins/marval/marvalsoftware.jira/3.1.0/handler/ApiHandler.ashx`
 4. We also need to provide the action that we want to perfom and the name of status we want to move to, this can be achived by passing the following paramaters on the queryString
 `action=MoveStatus&status=[StatusName]`.
 
@@ -35,14 +35,15 @@ if the status is not valid a note will be added to the request.
 
 ## Compatible Versions
 
-| Plugin  | MSM         | JIRA     |
+| Plugin  | MSM         | JIRA     | 
 |---------|-------------|----------|
-| 1.0.0   | 14.3.0      | v7+      |
-| 2.0.0   | 14.4.0      | v7+      |
-| 2.0.1   | 14.5.0      | v7+      |
-| 3.0.0   | 14.9.0      | v7+      |
-| 3.0.1   | 14.13.0     | v7+      |
-| 3.0.1.9 | 15.1+       | v7+      |
+| 1.0.0   | 14.3.0      | v7+      | 
+| 2.0.0   | 14.4.0      | v7+      | 
+| 2.0.1   | 14.5.0      | v7+      | 
+| 3.0.0   | 14.9.0      | v7+      | 
+| 3.0.1   | 14.13.0     | v7+      | 
+| 3.0.1.9 | 15.1+       | v7+      | 
+| 3.1.0   | 15.1+       | Cloud    | 
 
 ## Installation
 
@@ -50,8 +51,8 @@ Please see your MSM documentation for information on how to install plugins.
 
 Once the plugin has been installed you will need to configure the following settings within the plugin page:
 
-+ *JIRA Base URL* : The URL (including port) of your JIRA instance. `http://jira:8080/`
-+ *JIRA Custom Field Name* : The name of the custom field within JIRA that contains the MSM request number. `MSM Request Number`
++ *JIRA Base URL* : The URL (including port) of your JIRA instance. `https://prefix.atlassian.net/`
++ *JIRA Custom Field Name* : The name of the custom field within JIRA that contains the MSM request number. `MarvalID`
 + *JIRA Username* : The username for authentication with JIRA.
 + *JIRA Password* : The password for authentication with JIRA.
 + *Proxy Username* : The username for the system's default proxy (optional).
@@ -63,6 +64,7 @@ We recommend that you create a new user within JIRA instead of re-using an exist
 ## Usage
 
 The plugin can be launched from the quick menu after you load a request.
+The quick search functionality is enabled from your profile menu and available when running a quick search.
 
 ## Contributing
 
