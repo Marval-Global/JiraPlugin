@@ -1,0 +1,780 @@
+﻿<script type="text/javascript" src="template.js"></script>
+<template>
+    <style>
+        .MarvalSoftware-Jira {
+            display: none;
+        }
+
+        .window .MarvalSoftware-Jira {
+            display: block;
+        }
+
+        .MarvalSoftware-Jira {
+            position: absolute;
+            top: 26px;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+
+            .MarvalSoftware-Jira a {
+                color: #3B73AF;
+            }
+
+            .MarvalSoftware-Jira > .header {
+                position: absolute;
+                top: 20px;
+                left: 10px;
+                right: 10px;
+                line-height: 30px;
+            }
+
+                .MarvalSoftware-Jira > .header > a {
+                    position: absolute;
+                    top: 0;
+                    bottom: 0;
+                    right: 0;
+                    text-decoration: none;
+                }
+
+            .MarvalSoftware-Jira > .issues {
+                position: absolute;
+                top: 50px;
+                bottom: 110px;
+                left: 10px;
+                right: 10px;
+                overflow: auto;
+                border: 1px solid #000;
+                background: no-repeat center center;
+            }
+
+                .MarvalSoftware-Jira > .issues > .issue {
+                    position: relative;
+                    padding: 10px;
+                    height: 30px;
+                    line-height: 30px;
+                }
+
+                    .MarvalSoftware-Jira > .issues > .issue:nth-child(even) {
+                        background: #EBF2F9;
+                    }
+
+                    .MarvalSoftware-Jira > .issues > .issue > .left {
+                        position: absolute;
+                        left: 0;
+                        right: 200px;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                    }
+
+                        .MarvalSoftware-Jira > .issues > .issue > .left > * {
+                            margin-left: 10px;
+                        }
+
+                        .MarvalSoftware-Jira > .issues > .issue > .left > a {
+                            text-decoration: none;
+                        }
+
+                        .MarvalSoftware-Jira > .issues > .issue > .left > .status {
+                            display: inline-block;
+                            padding: 0 10px;
+                            border: 1px solid #DDD;
+                            border-radius: 5px;
+                            background: #FFF;
+                        }
+
+                    .MarvalSoftware-Jira > .issues > .issue > .right {
+                        position: absolute;
+                        right: 0;
+                        width: 200px;
+                    }
+
+                        .MarvalSoftware-Jira > .issues > .issue > .right > .assignee {
+                            box-sizing: border-box;
+                            position: absolute;
+                            right: 60px;
+                            padding: 0 10px;
+                            width: 140px;
+                            white-space: nowrap;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            text-align: center;
+                        }
+
+                        .MarvalSoftware-Jira > .issues > .issue > .right > .unlink {
+                            position: absolute;
+                            right: 10px;
+                            width: 50px;
+                            text-align: center;
+                            text-decoration: none;
+                            color: #F00;
+                        }
+
+            .MarvalSoftware-Jira > .newIssue {
+                position: absolute;
+                bottom: 10px;
+                left: 10px;
+                right: 10px;
+                height: 100px;
+            }
+
+                .MarvalSoftware-Jira > .newIssue > h1 {
+                    line-height: 30px;
+                    bottom: 60px;
+                    position: absolute;
+                }
+
+                .MarvalSoftware-Jira > .newIssue > .issueTypes{
+                    position: absolute;
+                    bottom: 50px;
+                }
+
+                    .MarvalSoftware-Jira > .newIssue > .issueTypes > .typeLoading {
+                        position: absolute;
+                        background-repeat: no-repeat;
+                        width: 20px;
+                        height: 20px;
+                    }
+
+                        .MarvalSoftware-Jira > .newIssue > .issueTypes > .typeLoading > select {
+                            box-sizing: border-box;
+                            padding: 2px;
+                            height: 22px;
+                            max-width: 110px;
+                            min-width: 110px;
+                            width: 110px;
+                            border: 1px solid #CCC;
+                            position: absolute;
+                        }
+
+                .MarvalSoftware-Jira > .newIssue > .issueSummaryWrapper {
+                    position: absolute;
+                    left: 120px;
+                    right: 90px;
+                    bottom: 28px;
+                }
+
+                    .MarvalSoftware-Jira > .newIssue > .issueSummaryWrapper > input {
+                        box-sizing: border-box;
+                        padding: 2px;
+                        height: 22px;
+                        width: 100%;
+                        border: 1px solid #CCC;
+                    }
+
+                .MarvalSoftware-Jira > .newIssue > button {
+                    box-sizing: border-box;
+                    position: absolute;
+                    right: 0;
+                    padding: 2px;
+                    height: 22px;
+                    width: 80px;
+                    border: 1px solid #CCC;
+                    border-radius: 2px;
+                    background: #F5F5F5;
+                    bottom: 28px;
+                }
+
+                .MarvalSoftware-Jira > .newIssue > .issueOptions {
+                    position: absolute;
+                    bottom: 0px;
+                    left: 0px;
+                }
+
+                    .MarvalSoftware-Jira > .newIssue > .issueOptions > a {
+                        vertical-align: middle;
+                        font-size: 13px;
+                        text-decoration: none;
+                        color: #3B73AF;
+                        margin-right: 10px;
+                    }
+
+                    .MarvalSoftware-Jira > .newIssue > .issueOptions > label {
+                        vertical-align: middle;
+                        margin-bottom: 2px;
+                        color: #9b9da0;
+                    }
+
+                    .MarvalSoftware-Jira > .newIssue > .issueOptions > input {
+                        vertical-align: middle;
+                    }
+
+        .attachmentHeader {
+            font-size: 13px;
+        }
+
+        .attachmentOptions {
+            margin-bottom: 5px;
+        }
+
+        .attachmentCheckboxes {
+            height: 200px;
+            overflow: auto;
+        }
+
+            .attachmentCheckboxes div {
+                margin-top: 10px;
+            }
+
+                .attachmentCheckboxes div input {
+                    margin-right: 5px;
+                    vertical-align: middle;
+                }
+
+    </style>
+    <div class="MarvalSoftware-Jira">
+        <div class="header">
+            <h1>@@LinkedIssuesTitle</h1>
+            <a href="javascript:void(0);">@@Link</a>
+        </div>
+        <div class="issues">
+        </div>
+        <div class="newIssue">
+            <h1>@@NewIssue</h1>
+            <div class="issueTypes">
+                <div class="typeLoading">
+                    <select class="IssueTypeSelect">
+                        <option selected disabled value="">@@IssueTypeSelector</option>
+                    </select>
+                </div>
+            </div>
+            <div class="issueSummaryWrapper">
+                <input type="text" placeholder="Summary" class="text" maxlength="255" />
+            </div>
+            <button disabled>@@Create</button>
+            <div class="issueOptions">
+                <a href="javascript:void(0);" class="selectAttachments"></a>
+                <input type="checkbox" disabled />
+                <label>@@MSMContactReporter</label>
+            </div>
+        </div>
+    </div>
+</template>
+<template class="issueTemplate">
+    <div class="issue">
+        <div class="left">
+            <a href="javascript:void(0);" target="_blank" class="number"></a>
+            <span class="status"></span>
+            <span class="summary"></span>
+        </div>
+        <div class="right">
+            <span class="assignee"></span>
+            <a href="javascript:void(0);" class="unlink">@@Unlink</a>
+        </div>
+    </div>
+</template>
+<template class="errorTemplate">
+    <style>
+        .MarvalSoftware-Jira-Errors h3,
+        .MarvalSoftware-Jira-Errors h4 {
+            padding: 8px 0 8px 0;
+        }
+
+        .jiraConfig > li {
+            display: none;
+        }
+    </style>
+    <div class="MarvalSoftware-Jira-Errors">
+        <div class="title">
+            <h3>@@EnsureConfigurationSettingsCorrect</h3>
+        </div>
+        <div>
+            <ul class="jiraConfig">
+                <li id="jiraBaseUrl">@@JIRABaseUrl</li>                
+                <li id="jiraCustomFieldID">@@JIRACustomFieldID</li>
+                <li id="jiraCustomFieldName">@@JIRACustomFieldName</li>
+                <li id="jiraUsername">@@JIRAUsername</li>
+                <li id="jiraPassword">@@JIRAPassword</li>
+				<li id="msmApiKey">@@MSMAPIKey</li>
+            </ul>
+            <h4></h4>
+        </div>
+    </div>
+</template>
+<template class="attachmentPopupTemplate">
+	<div class="MarvalSowftware-Jira-Popup-Attachments">
+    <p class="attachmentHeader">@@SelectRequestAttachmentHeader</p>
+    <br />
+    <div class="attachmentOptions">
+        <a href="javascript:void(0)" class="selectAll">@@SelectAllOption</a>
+        <span> | </span>
+        <a href="javascript:void(0)" class="selectNone">@@SelectNoneOption</a>
+    </div>
+    <div class="attachmentCheckboxes"></div>
+	</div>
+</template>
+<template class="attachmentTemplate">
+    <div class="MarvalSowftware-Jira-Attachments">
+        <input type="checkbox" class="attachmentCheckbox"/>
+        <label class="attachmentLabel"></label>
+    </div>
+</template>
+<script>
+    (function () {
+
+        var MarvalSoftware = window.top.MarvalSoftware;
+        var $ = window.top.$;
+
+        MarvalSoftware.Plugins.define("marval-software-plugins-jira",
+        {
+            _pluginPath: null,
+            _requestNumber: null,
+            _requestDescription: null,
+            _element: null,
+            _issuesElement: null,
+            _typeElement: null,
+            _summaryElement: null,
+            _createElement: null,
+            _renderIssuesRequest: null,
+            _typeLoadingElement: null,
+            _contactEmail: null,
+            _contactUsername: null,
+            _contactCheckbox: null,
+            _attachments: null,
+            _selectedAttachmentIds: null,
+            _selectAttachmentElement: null,
+            _issueOptionsElement: null,
+            _reporterCheckboxLabel: null,
+            _reporterCheckboxElement: null,
+            _attachmentsCheckboxList: null,
+
+            init: function () {
+                this._requestNumber = MarvalSoftware.UI.Controls.ScriptManager.getInstance().getPage().getRequestNumber();
+                this._contactEmail = MarvalSoftware.UI.Controls.ScriptManager.getInstance().getPage().getContactPreferredEmail();
+                this._requestDescription = MarvalSoftware.UI.Controls.ScriptManager.getInstance().getPage().getDescription();
+                this._attachments = MarvalSoftware.UI.Controls.ScriptManager.getInstance().getPage().getAttachments();
+												
+                this._selectedAttachmentIds = [];
+                if (this._requestNumber) {
+                    this._setUpQuickMenu();
+                }
+            },
+			
+			_preProcessResourceString: function(content) {
+				var resourceTagRegEx = /@@\w+\b/g;
+				var match = resourceTagRegEx.exec(content);
+
+				while(match) {					
+					var foundTag = match[0];
+					var resourcedKey = this._getString(foundTag);
+					content = content.replace(foundTag, resourcedKey);	
+					
+					var match = resourceTagRegEx.exec(content);
+				}
+				
+				return content;
+			},
+
+            _renderIssue: function (issue) {
+                var issueTemplate = document.querySelector(".issueTemplate").content;
+                var issueElement = window.top.document.importNode(issueTemplate, true);
+				var issueTemplateDiv = issueElement.querySelector(".issue");
+				issueTemplateDiv.innerHTML = this._preProcessResourceString(issueTemplateDiv.innerHTML);
+                var numberElement = issueElement.querySelector(".number");
+                numberElement.textContent = issue.key;
+                numberElement.href = issue.self;
+                numberElement.href = numberElement.protocol + "//" + numberElement.hostname + (numberElement.port ? ":" + numberElement.port : "") + "/browse/" + issue.key;
+                issueElement.querySelector(".status").textContent = issue.fields.status.name;
+                issueElement.querySelector(".summary").textContent = issue.fields.summary;
+                issueElement.querySelector(".summary").title = issue.fields.summary;
+                issueElement.querySelector(".assignee").textContent = issue.fields.assignee ? issue.fields.assignee.displayName : "";
+                issueElement.querySelector(".unlink").setAttribute("data-issue-number", issue.key);
+                if (!this._issuesElement.textContent.indexOf(issueElement.textContent) != -1) {
+                    this._issuesElement.appendChild(issueElement);
+                }
+            },
+
+            _renderIssues: function () {
+                if (this._renderIssuesRequest) {
+                    this._renderIssuesRequest.abort();
+                    this._renderIssuesRequest = null;
+                }
+                this._renderIssuesRequest = $.ajax({
+                    type: "GET",
+                    url: this._getPluginPath() + "handler/ApiHandler.ashx?action=GetJiraIssues&requestNumber=" + this._requestNumber,
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (result) {
+                        this._issuesElement.style.backgroundImage = "";
+                        result.issues.forEach(this._renderIssue.bind(this));
+                    }.bind(this),
+                    error: function () {
+                        this._errorPopup();
+                    }.bind(this)
+                });
+            },
+
+            _getContactUsername: function () {
+                if (this._contactEmail != null) {
+                    $.ajax({
+                        type: "GET",
+                        url: this._getPluginPath() + "handler/ApiHandler.ashx?action=GetJiraUsers&contactEmail=" + this._contactEmail,
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (result) {
+                            if (result.length > 0) {
+                                this._contactUsername = result[0]["name"];
+                                this._reporterCheckboxElement.disabled = false;
+                                this._reporterCheckboxLabel.style.color = "black";
+                                this._reporterCheckboxLabel.innerText = this._reporterCheckboxLabel.innerText + " (" + this._contactUsername + ")";
+                            }
+                        }.bind(this),
+                        error: function () {
+                            this._errorPopup();
+                        }.bind(this)
+                    });
+                }
+            },
+
+            _createNewIssue: function (issueSummary, issueType, project) {
+                $.ajax({
+                    type: "POST",
+                    url: this._getPluginPath() + "handler/ApiHandler.ashx?action=CreateJiraIssue&requestNumber=" + this._requestNumber + "&issueSummary=" +
+                    issueSummary + "&issueType=" + issueType + "&reporter=" + (this._contactCheckbox.checked ? this._contactUsername : null) + "&project=" + project,
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (result) {
+                        this._renderIssue(result);
+                        this._summaryElement.value = "";
+                        this._contactCheckbox.checked = false;
+                        if (this._selectedAttachmentIds.length != 0) {
+                            this._appendAttachments(this._selectedAttachmentIds, result.key);
+                        }
+                    }.bind(this),
+                    error: function () {
+                        this._createElement.disabled = false;
+                        this._errorPopup();
+                    }.bind(this)
+                });
+            },
+
+            _unlinkIssue: function (issueNumber) {
+                $.ajax({
+                    type: "DELETE",
+                    url: this._getPluginPath() + "handler/ApiHandler.ashx?action=UnlinkJiraIssue&issueNumber=" + issueNumber,
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "text",
+                    success: function () {
+                        this._issuesElement.removeChild(this._issuesElement.querySelector('[data-issue-number="' + issueNumber + '"]').parentNode.parentNode);
+                    }.bind(this)
+                });
+            },
+
+            _linkIssue: function (issueNumber) {
+                $.ajax({
+                    type: "PUT",
+                    url: this._getPluginPath() + "handler/ApiHandler.ashx?action=LinkJiraIssue&requestNumber=" + this._requestNumber + "&issueNumber=" + issueNumber,
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (result) {
+                        this._renderIssue(result);
+                    }.bind(this)
+                });
+            },
+									
+            _renderElement: function () {
+                var template = document.querySelector('template').content;				
+                this._element = window.top.document.importNode(template, true);
+				var jiraTemplate = this._element.querySelector(".MarvalSoftware-Jira");
+				jiraTemplate.innerHTML = this._preProcessResourceString(jiraTemplate.innerHTML);
+                var eventManager = MarvalSoftware.UI.Dom.EventManager.getInstance();
+                eventManager.addHandler(this._element.querySelector(".header > a"), "click", this._linkElement_click, this);
+                this._issuesElement = this._element.querySelector(".issues");
+                this._issuesElement.style.backgroundImage = 'url("' + this._getPluginPath() + '/img/spinner.gif")';
+                eventManager.addHandler(this._issuesElement, "click", this._issuesElement_click, this);
+                this._typeElement = this._element.querySelector(".newIssue > .issueTypes > .typeLoading > select");
+                this._typeLoadingElement = this._element.querySelector(".newIssue > .issueTypes > .typeLoading");
+                this._typeLoadingElement.style.backgroundImage = 'url("' + this._getPluginPath() + '/img/spinner.gif")';
+                this._summaryElement = this._element.querySelector(".issueSummaryWrapper > input");
+                this._createElement = this._element.querySelector("button");
+                this._selectAttachmentElement = this._element.querySelector(".selectAttachments");
+                this._setSelectedAttachmentCount(0);
+                this._contactCheckbox = this._element.querySelector(".issueOptions input");
+                this._issueOptionsElement = this._element.querySelector(".issueOptions");
+                this._reporterCheckboxLabel = this._issueOptionsElement.querySelector("label");
+                this._reporterCheckboxElement = this._issueOptionsElement.querySelector("input");
+                eventManager.addHandler(this._selectAttachmentElement, "click", this._showAttachmentsPopup, this);
+                eventManager.addHandler(this._createElement, "click", this._createElement_click, this);
+                eventManager.addHandler(this._summaryElement, "input", this._handleInput, this);
+                eventManager.addHandler(this._typeElement, "change", this._typeElement_change, this);
+                this._typeElement.style.display = 'none';
+                this.appendChild(this._element);
+            },
+
+            _loadProjectIssueTypes: function () {
+                $.ajax({
+                    type: "GET",
+                    url: this._getPluginPath() + "handler/ApiHandler.ashx?action=GetProjectsIssueTypes",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (result) {
+                        this._typeElement.style.backgroundImage = "";
+                        this._typeElement.style.display = 'block';
+                        var projectKeys = Object.keys(result);
+                        for (var i = 0; i < projectKeys.length; i++) {
+                            var option = document.createElement("option");
+                            var optionGroup = document.createElement("optgroup");
+                            optionGroup.label = projectKeys[i];
+                            this._typeElement.appendChild(optionGroup);
+
+                            for (var j = 0; j < result[projectKeys[i]].length; j++) {
+                                var option = document.createElement("option");
+                                option.text = result[projectKeys[i]][j];
+                                optionGroup.appendChild(option);
+                            }
+                        }
+                    }.bind(this),
+                    error: function (error) {
+                        this._errorPopup();
+                    }.bind(this)
+                });
+            },
+
+            _handleInput: function () {
+                this._summaryElement.value.length > 0 && this._typeElement.selectedIndex > 0 ? this._createElement.disabled = false : this._createElement.disabled = true;
+            },
+
+            _loadSummaryFromDescription: function () {
+                this._summaryElement.value = this._requestDescription;
+                this._summaryElement.select();
+            },
+
+            _renderAttachments: function (container) {
+                for (var i = 0; i < this._attachments.length; i++) {
+                    var template = document.querySelector(".attachmentTemplate").content;
+                    var templateElement = window.top.document.importNode(template, true);
+					var attachmentTemplateDiv = templateElement.querySelector(".MarvalSowftware-Jira-Attachments");
+					attachmentTemplateDiv.innerHTML = this._preProcessResourceString(attachmentTemplateDiv.innerHTML);
+                    var checkboxLabel = templateElement.querySelector(".attachmentLabel");
+                    var checkbox = templateElement.querySelector(".attachmentCheckbox");
+                    checkbox.name = this._getString("@@AttachmentCheckBox");
+                    checkbox.value = this._attachments[i].Identifier;
+                    checkbox.id = this._attachments[i].Name;
+                    checkbox.checked = this._selectedAttachmentIds.indexOf(this._attachments[i].Identifier) > -1 ? true : false;
+                    checkboxLabel.htmlFor = checkbox.id;
+                    checkboxLabel.innerHTML = checkbox.id + " (<strong>Size:</strong> " + (this._attachments[i].Length / 1000) + "kb)";
+                    container.appendChild(templateElement);
+                }
+            },
+
+            _appendAttachments: function (attachmentIds, issueNumber) {
+                $.ajax({
+                    type: "POST",
+                    url: this._getPluginPath() + "handler/ApiHandler.ashx?action=SendAttachments&attachments=" + attachmentIds.join(',') + "&issueNumber=" + issueNumber,
+                    contentType: "text/html",
+                    success: function (response) {
+                        this._selectedAttachmentIds = [];
+                        this._setSelectedAttachmentCount(0);
+                    }.bind(this),
+                    error: function () {
+                        this._errorPopup();
+                    }.bind(this)
+                });
+            },
+
+            _setSelectedAttachmentCount : function(count){
+                this._selectAttachmentElement.innerText = this._getString("@@SelectedAttachments", "" + count + "/" + this._attachments.length + "");
+            },
+
+            _showAttachmentsPopup: function (sender, e) {
+                e.preventDefault();
+                var eventManager = MarvalSoftware.UI.Dom.EventManager.getInstance();
+                var template = document.querySelector('.attachmentPopupTemplate').content;
+                var templateElement = window.top.document.importNode(template, true);
+				var attachmentPopUpTemplateDiv = templateElement.querySelector(".MarvalSowftware-Jira-Popup-Attachments");
+				attachmentPopUpTemplateDiv.innerHTML = this._preProcessResourceString(attachmentPopUpTemplateDiv.innerHTML);
+                this._attachmentsCheckboxList = templateElement.querySelector(".attachmentCheckboxes");
+                var selectAll = templateElement.querySelector(".selectAll");
+                var selectNone = templateElement.querySelector(".selectNone");
+                eventManager.addHandler(selectAll, "click", this._selectAllAttachments, this);
+                eventManager.addHandler(selectNone, "click", this._deselectAllAttachments, this);
+                this._renderAttachments(this._attachmentsCheckboxList);
+                var attachmentPopup = MarvalSoftware.UI.MessageBox.show(
+                    this._getString("@@AttachmentPopUpTitle"),
+                    templateElement,
+                    MarvalSoftware.UI.MessageBox.INFORMATION,
+                    [MarvalSoftware.UI.MessageBox.Buttons.OK, MarvalSoftware.UI.MessageBox.Buttons.CANCEL],
+                    MarvalSoftware.UI.MessageBox.Buttons.OK,
+                    450,
+                    MarvalSoftware.createDelegate(function (sender, e) {
+                        if (e.button === MarvalSoftware.UI.MessageBox.Buttons.OK) {
+                            for (var i = 0; i < this._attachmentsCheckboxList.getElementsByTagName("div").length; i++) {
+                                var checkbox = this._attachmentsCheckboxList.getElementsByTagName("div")[i].getElementsByTagName("input")[0];
+                                var value = parseInt(checkbox.value, 10);
+                                if (checkbox.checked && this._selectedAttachmentIds.indexOf(value) < 0) {
+                                    this._selectedAttachmentIds.push(value);
+                                } else if (!checkbox.checked && this._selectedAttachmentIds.indexOf(value) > -1) {
+                                    var indexToRemove = this._selectedAttachmentIds.indexOf(value);
+                                    this._selectedAttachmentIds.splice(indexToRemove, 1);
+                                }
+                            }
+                            this._setSelectedAttachmentCount(this._selectedAttachmentIds.length);
+                        }
+                    }, this)
+                );
+            },
+
+            _selectAllAttachments: function () {
+                for (var i = 0; i < this._attachmentsCheckboxList.getElementsByTagName("div").length; i++) {
+                    this._attachmentsCheckboxList.getElementsByTagName("div")[i].getElementsByTagName("input")[0].checked = true;
+                }
+            },
+
+            _deselectAllAttachments: function () {
+                for (var i = 0; i < this._attachmentsCheckboxList.getElementsByTagName("div").length; i++) {
+                    this._attachmentsCheckboxList.getElementsByTagName("div")[i].getElementsByTagName("input")[0].checked = false;
+                }
+            },
+
+            _popup: function () {
+                if (!this._pluginWindow) {
+                    this._pluginWindow = new MarvalSoftware.UI.Window({
+                        appendToElement: window.top.document.getElementById("aspnetForm"),
+                        title: this._getString("@@PluginDisplayname"),
+                        height: 680,
+                        width: 700,
+                        minHeight: 262,
+                        minWidth: 432,
+                        isResizable: true,
+                        isMaximizable: true,
+                        bodyElement: this
+                    });
+                    this._renderElement();
+                    this._loadProjectIssueTypes();
+                    this._loadSummaryFromDescription();
+                    this._renderIssues();
+                    if (this._contactEmail != null) {
+                        this._contactUsername = this._getContactUsername();
+                    }
+                }
+                if (!this._pluginWindow.isVisible()) {
+                    this._pluginWindow.centerToViewport();
+                }
+
+                this._pluginWindow.show();
+                this._summaryElement.focus();
+            },
+
+            _errorPopup: function (result) {
+                var errorTemplate = document.querySelector('.errorTemplate').content;
+                var errorMessages = window.top.document.importNode(errorTemplate, true);
+				var errorTemplateDiv = errorMessages.querySelector(".MarvalSoftware-Jira-Errors");
+				errorTemplateDiv.innerHTML = this._preProcessResourceString(errorTemplateDiv.innerHTML);
+                if (result) {
+                    for (var item in result) {
+                        var id = "#" + item;
+                        errorMessages.querySelector(id).style.display = "block";
+                    }
+                    errorMessages.querySelector('div > h3').textContent = this._getString("@@SettingsNotConfigured");
+                    errorMessages.querySelector('div > h4').textContent = this._getString("@@AddConfigurationViaPluginPage");
+                }
+                MarvalSoftware.UI.MessageBox.show(
+                    this._getString("@@InvalidJiraConfiguration"),
+                    errorMessages,
+                    MarvalSoftware.UI.MessageBox.Types.ERROR,
+                    [MarvalSoftware.UI.MessageBox.Buttons.OK],
+                    MarvalSoftware.UI.MessageBox.Buttons.OK,
+                    450
+                 );
+            },
+
+            _getPluginPath: function () {
+                return this.attributes["data-pluginpath"].value;
+            },
+			
+			_getPluginId: function () {
+                return this.attributes["data-pluginid"].value;
+            },
+									
+			_getPluginCulture: function () {
+                return this.attributes["data-pluginculture"].value;
+            },
+							
+			_getString: function (key, formatObject){
+				return MarvalSoftware.Plugins.PluginResourceManager.getInstance().getString(this._getPluginId(), key, this._getPluginCulture(), formatObject);
+			},
+			
+            _setUpQuickMenu: function () {
+                var styleElement = window.top.document.createElement("style");
+                window.top.document.body.appendChild(styleElement);
+                styleElement.sheet.insertRule(".MarvalSoftware-Jira-quick-menu-item { background-image: url(" + this._getPluginPath() + "img/jira_32.png); }", 0);
+
+                var quickMenuId = window.top.document.querySelector(".quickMenu").id;
+                var quickMenu = MarvalSoftware.UI.Controls.ScriptManager.getInstance().getControl(quickMenuId);
+                quickMenu.addMenuItem({
+                    Identifier: "MarvalSoftware-Jira",
+                    Label: this._getString("@@PluginDisplayname"),
+                    HRef: "javascript:void(0);",
+                    CssClass: "MarvalSoftware-Jira-quick-menu-item"
+                });
+                quickMenu.onMenuItemClicked.subscribe(function (sender, e) {
+                    if (e.menuItem.getIdentifier() === "MarvalSoftware-Jira") {
+                        this._preRequisiteCheck();
+                    }
+                }, this);
+            },
+
+            _preRequisiteCheck: function (sender, e) {
+                $.ajax({
+                    type: "GET",
+                    url: this._getPluginPath() + "handler/ApiHandler.ashx?action=PreRequisiteCheck",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (result) {
+                        if (Object.keys(result).length > 0) {
+                            this._errorPopup(result);
+                        }
+                        else {
+                            this._popup();
+                        }
+                    }.bind(this)
+                });
+            },
+
+            _linkElement_click: function () {
+                var divElement = window.top.document.createElement("DIV");
+                divElement.innerHTML = this._getString("@@EnterJiraIssueNumber");
+                var aElement = divElement.getElementsByTagName("INPUT")[0];
+
+                var messageBox = MarvalSoftware.UI.MessageBox.show(
+                    this._getString("@@LinkJiraIssueTitle"),
+                    divElement,
+                    MarvalSoftware.UI.MessageBox.Types.INFORMATION,
+                    [MarvalSoftware.UI.MessageBox.Buttons.OK, MarvalSoftware.UI.MessageBox.Buttons.CANCEL],
+                    MarvalSoftware.UI.MessageBox.Buttons.OK,
+                    400,
+                    MarvalSoftware.createDelegate(function (sender, e) {
+                        if (e.button === MarvalSoftware.UI.MessageBox.Buttons.OK) {
+                            this._linkIssue(aElement.value);
+                        }
+                    }, this)
+                );
+
+                MarvalSoftware.UI.Dom.EventManager.getInstance().addHandler(aElement, "keypress", function (s, e) {
+                    if (e.keyCode == 13) {
+                        messageBox.dismiss(MarvalSoftware.UI.MessageBox.Buttons.OK);
+                    }
+                }, this);
+
+                aElement.focus();
+            },
+
+            _issuesElement_click: function (sender, e) {
+                if (e.target.className == "unlink") {
+                    this._unlinkIssue(e.target.dataset.issueNumber);
+                }
+            },
+
+            _typeElement_change: function (sender, e) {
+                this._createElement.disabled = !this._summaryElement.value.length > 0;
+            },
+
+            _createElement_click: function (sender, e) {
+                this._createNewIssue(this._summaryElement.value, this._typeElement.value, this._typeElement.options[this._typeElement.selectedIndex].parentNode.label);
+                this._createElement.disabled = true;
+                e.preventDefault();
+            },
+        });
+    })();
+</script>
