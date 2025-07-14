@@ -1,33 +1,31 @@
 {
-  "Name": "MarvalSoftware.Plugins.MarvalProjects",
+  "Name": "MarvalSoftware.Plugins.JIRA",
   "Organisation": "MarvalSoftware",
   "DisplayName": "@@PluginDisplayname",
-  "Icon": "img/openproject_16.png",
-  "Version": "0.6",
+  "Icon": "img/jira_16.png",
+  "Version": "3.3.9",
   "SupportedVersions": [
-     "15.7.0",
-     "15.7.1",
-     "15.7.2",
-     "15.10.0",
-     "15.10.1",
-     "15.10.2",
-	   "0.0.0"
+	"0.0.0"
   ],
   "Pages": [
     "request.aspx",
     "plugin.aspx"
   ],
-  "HtmlImportFile": "MarvalSoftware.Plugins.MarvalProjects.html",
-  "TagName": "marval-software-plugins-marvalprojects",
+  "HtmlImportFile": "MarvalSoftware.Plugins.JIRA.html",
+  "TagName": "marval-software-plugins-jira",
   "GlobalSettings": [
-    "@@APIKEY",
-    "@@CUSTOMATTRIBUTE"
+    "@@JIRABaseUrl",
+    "@@JIRACustomFieldName",
+    "@@JIRAUsername",
+    "@@JIRAPassword",
+    "@@ProxyUsername",
+    "@@ProxyPassword",
+    "@@MSMAPIKey"
   ],
   "QuickSearchTypes": [
-	  {
-		  "Name": "@@OpenProjectProject",
+    {
+		  "Name": "@@JiraIssue",
 		  "Handler": "handler/SearchHandler.ashx" 
 	  }
   ]
 }
-
